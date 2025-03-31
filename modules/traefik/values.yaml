@@ -20,6 +20,10 @@ service:
   enabled: true
   type: LoadBalancer
 
+providers:
+  kubernetesCRD:
+    enabled: true
+
 additionalArguments:
   - "--providers.kubernetescrd"
   - "--providers.kubernetesingress"
