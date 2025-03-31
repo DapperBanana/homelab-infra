@@ -15,9 +15,3 @@ resource "helm_release" "cert_manager" {
     file("${path.module}/values.yaml")
   ]
 }
-
-// === File: modules/cert-manager/values.yaml ===
-
-installCRDs: true
-
-# Additional config can go here if needed later
