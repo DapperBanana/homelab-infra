@@ -1,3 +1,4 @@
+
 entryPoints:
   web:
     address: ":80"
@@ -12,10 +13,24 @@ entryPoints:
       tls:
         enabled: true
 
+# Configure dashboard access
 ingressRoute:
   dashboard:
     enabled: true
+    # Make sure we define the proper route
+    annotations: {}
+    labels: {}
+    matchRule: "PathPrefix(`/dashboard`) || PathPrefix(`/api`)"
+    middlewares: []
+    entryPoints: ["websecure"]
+    tls: {}
 
+# Ensure API is enabled properly
+api:
+  dashboard: true
+  insecure: true  # For testing only, set to false in production
+
+# The rest of your configuration
 service:
   enabled: true
   type: LoadBalancer
@@ -23,8 +38,9 @@ service:
 providers:
   kubernetesCRD:
     enabled: true
+  kubernetesIngress:
+    enabled: true
 
 additionalArguments:
   - "--providers.kubernetescrd"
   - "--providers.kubernetesingress"
-  - "--api.dashboard=true"
