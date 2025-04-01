@@ -1,3 +1,26 @@
+terraform {
+  required_providers {
+    helm = {
+      source  = "hashicorp/helm"
+      version = ">= 2.12.1"
+    }
+    kubectl = {
+      source  = "gavinbunney/kubectl"
+      version = ">= 1.14.0"
+    }
+  }
+}
+
+provider "helm" {
+  kubernetes {
+    config_path = pathexpand("~/.kube/config")
+  }
+}
+
+provider "kubectl" {
+  config_path = pathexpand("~/.kube/config")
+}
+
 module "traefik" {
   source = "../../modules/traefik"
 }
@@ -46,25 +69,4 @@ module "kestra" {
 
 module "erpnext" {
   source = "../../modules/erpnext"
-}
-
-provider "helm" {
-  kubernetes {
-    config_path = pathexpand("~/.kube/config")
-  }
-}
-
-provider "kubectl" {
-  kubernetes {
-    config_path = pathexpand("~/.kube/config")
-  }
-}
-
-terraform {
-  required_providers {
-    kubectl = {
-      source  = "hashicorp/kubectl"
-      version = ">= 1.14.0"
-    }
-  }
 }
