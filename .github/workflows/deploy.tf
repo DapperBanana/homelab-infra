@@ -27,7 +27,7 @@ jobs:
 
       - name: Initialize OpenTofu
         run: tofu init
-        working-directory: environments/production  # Adjust to your environment directory
+        working-directory: environments/dev  # Adjust to your environment directory
 
       - name: Plan OpenTofu changes
         run: |
@@ -37,7 +37,7 @@ jobs:
             -var="authelia_displayname=${{ secrets.AUTHELIA_DISPLAYNAME }}" \
             -var="authelia_email=${{ secrets.AUTHELIA_EMAIL }}" \
             -var="authelia_group=${{ secrets.AUTHELIA_GROUP }}"
-        working-directory: environments/production  # Adjust to your environment directory
+        working-directory: environments/dev  # Adjust to your environment directory
 
       - name: Apply OpenTofu changes
         if: github.ref == 'refs/heads/main'
@@ -48,4 +48,4 @@ jobs:
             -var="authelia_displayname=${{ secrets.AUTHELIA_DISPLAYNAME }}" \
             -var="authelia_email=${{ secrets.AUTHELIA_EMAIL }}" \
             -var="authelia_group=${{ secrets.AUTHELIA_GROUP }}"
-        working-directory: environments/production  # Adjust to your environment directory
+        working-directory: environments/dev  # Adjust to your environment directory
