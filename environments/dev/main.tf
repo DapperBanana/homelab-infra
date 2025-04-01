@@ -31,7 +31,6 @@ module "tailscale" {
 
 module "authelia" {
   source = "../../modules/authelia"
-
   authelia_username      = var.authelia_username
   authelia_password_hash = var.authelia_password_hash
   authelia_displayname   = var.authelia_displayname
