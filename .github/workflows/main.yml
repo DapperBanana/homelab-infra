@@ -27,7 +27,7 @@ jobs:
           chmod 600 ~/.kube/config
 
       - name: Tofu Init
-        run: cd environments/dev && tofu init
+        run: cd ~/homelab-infra/environments/dev && tofu init
 
       - name: Tofu Apply
-        run: cd environments/dev && tofu apply -auto-approve
+        run: cd ~/homelab-infra/environments/dev && tofu apply -auto-approve
