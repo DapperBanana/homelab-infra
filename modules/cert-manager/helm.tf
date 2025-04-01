@@ -15,3 +15,8 @@ resource "helm_release" "cert_manager" {
     file("${path.module}/values.yaml")
   ]
 }
+
+resource "kubectl_manifest" "cluster_issuers" {
+  yaml_body = file("${path.module}/cluster-issuers.yaml")
+  depends_on = [helm_release.cert_manager]
+} 

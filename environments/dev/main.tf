@@ -8,6 +8,12 @@ module "tailscale" {
 
 module "authelia" {
   source = "../../modules/authelia"
+
+  authelia_username      = var.authelia_username
+  authelia_password_hash = var.authelia_password_hash
+  authelia_displayname   = var.authelia_displayname
+  authelia_email         = var.authelia_email
+  authelia_group         = var.authelia_group
 }
 
 module "cert_manager" {

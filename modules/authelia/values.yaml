@@ -1,0 +1,45 @@
+domain: "austinlhoward.com"
+
+server:
+  port: 9091
+  tls:
+    enabled: false
+
+log:
+  level: info
+
+authentication_backend:
+  file:
+    path: /config/users_database.yml
+
+access_control:
+  default_policy: deny
+  rules:
+    - domain: "*.austinlhoward.com"
+      policy: one_factor
+
+session:
+  name: authelia_session
+  secret: changeme-session
+  expiration: 1h
+  inactivity: 5m
+  domain: austinlhoward.com
+
+storage:
+  local:
+    path: /config/db.sqlite3
+
+notifier:
+  filesystem:
+    filename: /config/notification.txt
+
+configMap:
+  users_database.yml: |
+    ---
+    users:
+      ${username}:
+        password: ${password_hash}
+        displayname: ${displayname}
+        email: ${email}
+        groups:
+          - ${group}

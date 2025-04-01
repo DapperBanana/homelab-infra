@@ -1,0 +1,7 @@
+users:
+  {{ .Values.authelia.username }}:
+    password: {{ .Values.authelia.password_hash }}
+    displayname: {{ .Values.authelia.displayname }}
+    email: {{ .Values.authelia.email }}
+    groups:
+      - {{ .Values.authelia.group }}
