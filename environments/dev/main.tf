@@ -53,3 +53,18 @@ provider "helm" {
     config_path = pathexpand("~/.kube/config")
   }
 }
+
+provider "kubectl" {
+  kubernetes {
+    config_path = pathexpand("~/.kube/config")
+  }
+}
+
+terraform {
+  required_providers {
+    kubectl = {
+      source  = "hashicorp/kubectl"
+      version = ">= 1.14.0"
+    }
+  }
+}
