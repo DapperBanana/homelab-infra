@@ -1,0 +1,33 @@
+# .github/workflows/deploy.yml
+
+name: Deploy to Homelab
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up OpenTofu
+        uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_version: latest
+
+      - name: Set up Kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
+          chmod 600 ~/.kube/config
+
+      - name: Tofu Init
+        run: cd environments/dev && tofu init
+
+      - name: Tofu Apply
+        run: cd environments/dev && tofu apply -auto-approve
