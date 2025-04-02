@@ -33,11 +33,11 @@ module "authelia" {
   authelia_group         = var.authelia_group
 }
 */
-
+/*
 module "cert_manager" {
   source = "../../modules/cert-manager"
 }
-
+*/
 module "postgres" {
   source = "../../modules/postgres"
 }
