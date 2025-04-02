@@ -1,8 +1,8 @@
 resource "helm_release" "glance" {
   name             = "glance"
-  repository       = "https://nicolargo.github.io/helm-charts" # Updated repository
-  chart            = "glances"                                 # Chart name is "glances" not "glance"
-  version          = "1.0.5"                                  # Use a recent version
+  chart            = "glances"
+  version          = "1.0.5"
+  repository       = "https://sleighzy.github.io/helm-charts/" # Correct repository
   namespace        = "glance"
   create_namespace = true
   
@@ -14,7 +14,7 @@ resource "helm_release" "glance" {
         theme: default
         hide_top_bar: false
         port: 61208
-      
+            
       ingress:
         enabled: true
         className: traefik
