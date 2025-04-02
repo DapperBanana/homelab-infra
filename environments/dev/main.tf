@@ -23,6 +23,7 @@ module "tailscale" {
   source = "../../modules/tailscale"
 }
 
+/*
 module "authelia" {
   source = "../../modules/authelia"
   authelia_username      = var.authelia_username
@@ -31,6 +32,7 @@ module "authelia" {
   authelia_email         = var.authelia_email
   authelia_group         = var.authelia_group
 }
+*/
 
 module "cert_manager" {
   source = "../../modules/cert-manager"
